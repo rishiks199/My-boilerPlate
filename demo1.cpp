@@ -19,6 +19,40 @@ int y8[8] = { -1, 0, 1, -1, 1, -1, 0, 1 };
 int x4[4]={0,0,-1,1};
 int y4[4]={1,-1,0,0};
 
+void precompute(){
+    fact[0] = fact[1] = 1 ; invFact[0] = invFact[1] = 1 ;
+     for(ll i = 2 ; i < N ; i++) {
+      fact[i] = (fact[i-1] * i)%mod ;
+  }
+  for(ll i = 2 ; i < N ; i++) {
+      invFact[i] = (mod - mod/i) * invFact[mod%i] % mod ;
+  }
+  for(ll i = 1 ; i < N ; i++) {
+      invFact[i] = (invFact[i-1] * invFact[i])%mod ; 
+  }
+}
+
+int power(int a,int b)
+{
+    int res=1;
+    if(a==0){
+        return a;
+    }
+    if(b==0){
+        return 1;
+    }
+    a=a%mod;
+    while(b>0){
+        if(b&1){
+            res=(res*a)%mod;
+        }
+         a=(a*a)%mod;
+        b>>=1;
+    }
+    return res;
+}
+
+
 
 void solve(){
 
